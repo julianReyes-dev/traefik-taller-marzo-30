@@ -1,17 +1,29 @@
+# ======================
+# Puntos de Entrada
+# ======================
 entryPoints:
   webinsecure:
-    address: ":80"
+    address: ":80"  # Punto de entrada HTTP (sin SSL)
 
+# ======================
+# Configuración del API
+# ======================
 api:
-  dashboard: true
-  insecure: true  # Solo para desarrollo, en producción usa autenticación
+  dashboard: true  # Habilita el dashboard
+  insecure: true   # Solo para desarrollo (en producción usar autenticación)
 
+# ======================
+# Proveedores
+# ======================
 providers:
   docker:
-    exposedByDefault: false
-    network: "traefik_network"
-    
+    exposedByDefault: false  # Seguridad: no exponer todos los contenedores
+    network: "traefik_network"  # Red específica para descubrimiento
+
+# ======================
+# Métricas (Prometheus)
+# ======================
 metrics:
   prometheus:
-    entryPoint: "webinsecure"
-    addServicesLabels: true
+    entryPoint: "webinsecure"  # Punto de entrada para métricas
+    addServicesLabels: true  # Añade etiquetas de servicio a las métricas
