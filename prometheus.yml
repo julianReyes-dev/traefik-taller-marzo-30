@@ -1,0 +1,13 @@
+# prometheus.yml
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'traefik'
+    static_configs:
+      - targets: ['traefik:8080']  # Traefik expone métricas en /metrics
+
+  - job_name: 'api_services'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['api_basic:3000', 'api_premium:3001', 'api_admin:3002']

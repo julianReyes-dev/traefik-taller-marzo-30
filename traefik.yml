@@ -1,0 +1,17 @@
+entryPoints:
+  webinsecure:
+    address: ":80"
+
+api:
+  dashboard: true
+  insecure: true  # Solo para desarrollo, en producción usa autenticación
+
+providers:
+  docker:
+    exposedByDefault: false
+    network: "traefik_network"
+    
+metrics:
+  prometheus:
+    entryPoint: "webinsecure"
+    addServicesLabels: true
